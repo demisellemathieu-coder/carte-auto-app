@@ -1,5 +1,5 @@
-const CACHE = "carte-auto-v2";
-const SHELL = ["./", "index.html", "manifest.webmanifest", "logo.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"];
+const CACHE = "carte-auto-v3";
+const SHELL = ["./", "index.html", "manifest.webmanifest", "logo.svg", "icon-v3-192.png", "icon-v3-512.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
