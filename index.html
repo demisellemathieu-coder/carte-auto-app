@@ -77,18 +77,13 @@ if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catc
 
 function launch() {
   document.getElementById("home").style.display = "none";
-  const app = document.getElementById("app"), splash = document.getElementById("splash");
-  app.style.display = "block"; splash.style.display = "flex";
-  const f = document.createElement("iframe");
-  f.src = APP_URL + "?embed=true&embed_options=light_theme";
-  f.allow = "camera; microphone; clipboard-read; clipboard-write; fullscreen";
-  f.title = "Carte Auto";
-  f.onload = () => { splash.style.opacity = 0; setTimeout(() => splash.style.display = "none", 400); };
-  app.appendChild(f);
-  // si l'appli ne s'affiche pas (réveil du serveur, connexion), bouton pour l'ouvrir en direct
-  setTimeout(() => { document.getElementById("open").style.display = "block"; }, 12000);
-  setTimeout(() => { if (splash.style.display !== "none") { splash.style.opacity = 0; setTimeout(() => splash.style.display = "none", 400); } }, 15000);
+  document.getElementById("splash").style.display = "flex";
+  // ouverture directe (pas d'iframe) : la connexion Streamlit et l'envoi de photos fonctionnent normalement
+  setTimeout(() => location.replace(APP_URL), 700);
+  setTimeout(() => { document.getElementById("open").style.display = "block"; }, 6000);
 }
+// retour arrière depuis Carte Auto : on relance l'ouverture
+window.addEventListener("pageshow", e => { if (e.persisted && (standalone || forceApp)) launch(); });
 document.getElementById("open").onclick = () => { location.href = APP_URL; };
 
 if (standalone || forceApp) {
