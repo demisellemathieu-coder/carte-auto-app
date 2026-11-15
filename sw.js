@@ -1,4 +1,4 @@
-const CACHE = "carte-auto-v3";
+const CACHE = "carte-auto-v4";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "logo.svg", "icon-v3-192.png", "icon-v3-512.png"];
 
 self.addEventListener("install", e => {
